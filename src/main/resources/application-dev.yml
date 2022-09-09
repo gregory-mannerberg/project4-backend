@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spyglass
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
