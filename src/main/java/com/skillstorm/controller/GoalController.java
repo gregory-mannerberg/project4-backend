@@ -47,6 +47,7 @@ public class GoalController {
 	
 	@DeleteMapping("/id/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable int id) {
+		goalService.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
 
