@@ -22,27 +22,25 @@ public class GoalService {
 		return goalRepository.findByUsername(username);
 	}
 	
-	public Optional<Goal> findById(int id, String username) {
-		return goalRepository.findByIdAndUsername(id, username);
+	public Optional<Goal> findById(int id) {
+		return goalRepository.findById(id);
 	}
 	
 	@Transactional
-	public Goal createGoal(Goal goal, String username) {
-		Optional<Goal> dbGoal = goalRepository.findByIdAndUsername(goal.getId(), username);
+	public Goal createGoal(Goal goal) {
+		Optional<Goal> dbGoal = goalRepository.findById(goal.getId());
 		if (dbGoal.isPresent()) {
 			throw new GoalCreationException(goal.getId());
 		}
 		else {
-			goal.setUsername(username);
 			return goalRepository.save(goal);
 		}
 	}
 	
 	@Transactional
-	public Optional<Goal> updateGoal(Goal goal, String username) {
-		Optional<Goal> dbGoal = goalRepository.findByIdAndUsername(goal.getId(), username);
+	public Optional<Goal> updateGoal(Goal goal) {
+		Optional<Goal> dbGoal = goalRepository.findById(goal.getId());
 		if (dbGoal.isPresent()) {
-			goal.setUsername(username);
 			return Optional.of(goalRepository.save(goal));
 		}
 		else {

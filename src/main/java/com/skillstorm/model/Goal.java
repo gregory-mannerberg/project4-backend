@@ -47,7 +47,7 @@ public class Goal {
 	private float currentAmount;
 	
 	@Column(name="username")
-	@JsonIgnore
+	@NotBlank
 	private String username;
 
 	public Goal() {
